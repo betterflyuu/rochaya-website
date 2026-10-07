@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ROCHAYA — For What They Built.</title>
+<title>ROCHAYA — Carry The Story</title>
 
 <meta name="description" content="ROCHAYA — Heritage bags made to carry stories, memories, and generations.">
 
@@ -15,765 +15,573 @@
 
 <style>
 
-:root {
-    --cream: #ebe1d6;
-    --cream-light: #f5efe7;
-    --brown: #4a3528;
-    --brown-dark: #292019;
-    --sage: #7a8b6f;
-    --red: #895557;
-    --mustard: #d6a64a;
-    --white: #faf8f3;
+:root{
+  --cream:#f4efe5;
+  --paper:#faf7f0;
+  --brown:#40352c;
+  --brown-dark:#211c18;
+  --red:#8f302d;
+  --gold:#a88955;
+  --line:rgba(64,53,44,.2);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-    background: var(--cream-light);
-    color: var(--brown);
-    font-family: "DM Sans", sans-serif;
-    overflow-x: hidden;
+body{
+  background:var(--paper);
+  color:var(--brown);
+  font-family:"DM Sans",sans-serif;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+img{
+  width:100%;
+  display:block;
+  object-fit:cover;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 22px 5vw;
-
-    color: var(--white);
-
-    transition: 0.4s ease;
-}
-
-.navbar.scrolled {
-    background: rgba(245,239,231,0.94);
-    backdrop-filter: blur(12px);
-    color: var(--brown);
-    box-shadow: 0 1px 20px rgba(60,40,20,0.08);
-}
-
-.logo {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 30px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-
-.nav-links a {
-    position: relative;
-}
-
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: currentColor;
-    transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 100svh;
-    position: relative;
-
-    display: flex;
-    align-items: flex-end;
-
-    padding: 8vw 5vw 7vw;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(38,27,18,0.65),
-            rgba(38,27,18,0.12),
-            rgba(38,27,18,0.05)
-        ),
-        url("images/hero.jpg");
-
-    background-size: cover;
-    background-position: center;
-    color: white;
-}
-
-.hero-content {
-    max-width: 800px;
-}
-
-.eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
+nav{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:10;
+  padding:22px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:white;
 }
 
-.hero h1 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(70px, 12vw, 180px);
-    line-height: 0.78;
-    font-weight: 500;
-    letter-spacing: -0.035em;
-    margin-left: -7px;
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:29px;
+  font-weight:700;
+  letter-spacing:4px;
 }
 
-.hero-subtitle {
-    max-width: 440px;
-    margin-top: 35px;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(20px, 2.2vw, 30px);
-    line-height: 1.25;
+.nav-links{
+  display:flex;
+  gap:28px;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
-.hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-top: 32px;
+.menu{
+  display:none;
 }
-
-.button {
-    display: inline-flex;
-    padding: 14px 22px;
-    border: 1px solid currentColor;
-
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-
-    transition: 0.3s;
-}
-
-.button:hover {
-    background: white;
-    color: var(--brown);
-}
-
-.hero-number {
-    position: absolute;
-    right: 5vw;
-    bottom: 7vw;
-
-    font-family: "Cormorant Garamond", serif;
-    font-size: 14px;
-    letter-spacing: 0.2em;
-}
-
-/* =========================
-   INTRO
-========================= */
 
-.intro {
-    padding: 140px 8vw;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 8vw;
-    align-items: center;
-}
+/* HERO */
 
-.section-label {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
+.hero{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20,15,12,.72),
+      rgba(20,15,12,.12)
+    ),
+    url("https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1800&q=85");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  display:flex;
+  align-items:flex-end;
+  padding:0 6% 9vh;
 }
 
-.intro h2 {
-    margin-top: 25px;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(48px, 6vw, 90px);
-    line-height: 0.9;
-    font-weight: 500;
+.hero-content{
+  max-width:800px;
 }
 
-.intro-text {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 25px;
-    line-height: 1.45;
+.eyebrow{
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+  opacity:.8;
 }
 
-.intro-text p + p {
-    margin-top: 25px;
+.hero h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(70px,16vw,180px);
+  line-height:.76;
+  font-weight:500;
+  letter-spacing:-5px;
 }
-
-/* =========================
-   COLLECTION
-========================= */
 
-.collection {
-    padding: 80px 5vw 140px;
+.hero h1 span{
+  color:#e7d8b8;
 }
 
-.collection-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin-bottom: 55px;
+.hero-bottom{
+  margin-top:35px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  max-width:900px;
 }
 
-.collection-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(55px, 8vw, 120px);
-    line-height: 0.8;
-    font-weight: 500;
+.hero-description{
+  max-width:330px;
+  font-size:12px;
+  line-height:1.8;
+  opacity:.85;
 }
 
-.collection-count {
-    font-size: 11px;
-    letter-spacing: 0.2em;
+.button{
+  display:inline-block;
+  border:1px solid rgba(255,255,255,.55);
+  padding:15px 22px;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
-.collection-grid {
-    display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
-    gap: 18px;
-}
+/* INTRO */
 
-.collection-card {
-    position: relative;
-    min-height: 650px;
-    overflow: hidden;
-    background: #d6c5ae;
+.intro{
+  padding:120px 7%;
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:8%;
 }
 
-.collection-card.small {
-    min-height: 430px;
-    margin-top: 100px;
+.small-label{
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--red);
 }
-
-.card-image {
-    position: absolute;
-    inset: 0;
 
-    background-size: cover;
-    background-position: center;
-
-    transition: transform 0.8s cubic-bezier(.2,.7,.2,1);
+.intro h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(42px,7vw,82px);
+  line-height:.9;
+  font-weight:500;
 }
 
-.collection-card:hover .card-image {
-    transform: scale(1.045);
+.intro-text{
+  align-self:end;
+  max-width:520px;
+  font-size:14px;
+  line-height:1.9;
+  color:#62574c;
 }
-
-.card-overlay {
-    position: absolute;
-    inset: 0;
 
-    background: linear-gradient(
-        to top,
-        rgba(30,20,12,0.65),
-        transparent 55%
-    );
-}
+/* STORY */
 
-.card-info {
-    position: absolute;
-    left: 35px;
-    bottom: 32px;
-    color: white;
+.story{
+  background:var(--brown-dark);
+  color:var(--cream);
+  padding:110px 7%;
 }
 
-.card-info span {
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
+.story-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:7%;
+  align-items:center;
 }
 
-.card-info h3 {
-    margin-top: 8px;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 48px;
-    font-weight: 500;
+.story-image{
+  height:600px;
+  object-fit:cover;
 }
-
-/* =========================
-   DARK STORY
-========================= */
-
-.story {
-    background: var(--brown-dark);
-    color: var(--cream);
 
-    padding: 150px 8vw;
-
-    display: grid;
-    grid-template-columns: 0.7fr 1.3fr;
-    gap: 8vw;
+.story h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(50px,7vw,90px);
+  line-height:.88;
+  font-weight:500;
+  margin:25px 0;
 }
 
-.story h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(55px, 8vw, 120px);
-    line-height: 0.82;
-    font-weight: 500;
+.story p{
+  max-width:430px;
+  line-height:1.9;
+  font-size:13px;
+  color:#cfc4b4;
 }
 
-.story-copy {
-    align-self: end;
-    max-width: 580px;
+.red-line{
+  width:45px;
+  height:2px;
+  background:var(--red);
+  margin:30px 0;
 }
 
-.story-copy p {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 28px;
-    line-height: 1.35;
-}
+/* COLLECTION */
 
-.story-copy p + p {
-    margin-top: 25px;
-    font-family: "DM Sans", sans-serif;
-    font-size: 13px;
-    line-height: 1.8;
-    opacity: 0.75;
+.collections{
+  padding:120px 6%;
 }
 
-/* =========================
-   PRODUCT FEATURE
-========================= */
-
-.product-feature {
-    padding: 140px 5vw;
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:55px;
 }
 
-.product-heading {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
+.section-head h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:70px;
+  font-weight:500;
+  line-height:.8;
 }
 
-.product-heading h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(55px, 8vw, 110px);
-    font-weight: 500;
-    line-height: 0.8;
+.section-number{
+  font-size:10px;
+  letter-spacing:2px;
 }
 
-.product-number {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 22px;
+.collection-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:25px;
 }
 
-.product-layout {
-    display: grid;
-    grid-template-columns: 1.5fr 0.5fr;
-    gap: 18px;
+.collection-card{
+  position:relative;
+  overflow:hidden;
+  min-height:580px;
+  background:#ddd;
 }
-
-.product-main {
-    min-height: 680px;
 
-    background-size: cover;
-    background-position: center;
-
-    position: relative;
+.collection-card.small{
+  min-height:420px;
 }
 
-.product-side {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+.collection-card img{
+  height:100%;
+  position:absolute;
+  inset:0;
+  transition:transform .7s ease;
 }
-
-.product-detail {
-    flex: 1;
 
-    min-height: 250px;
-
-    background-size: cover;
-    background-position: center;
+.collection-card:hover img{
+  transform:scale(1.04);
 }
 
-.product-caption {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+.card-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:30px;
+  color:white;
+  background:linear-gradient(
+    transparent 45%,
+    rgba(0,0,0,.65)
+  );
 }
-
-/* =========================
-   KIDS
-========================= */
 
-.kids {
-    padding: 130px 5vw;
-
-    background: #d8dfd0;
+.card-overlay h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:42px;
+  font-weight:500;
 }
 
-.kids-header {
-    max-width: 800px;
-    margin-bottom: 60px;
+.card-overlay span{
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:8px;
 }
 
-.kids-header h2 {
-    margin-top: 20px;
+/* CRAFT */
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(55px, 8vw, 115px);
-    line-height: 0.82;
-    font-weight: 500;
+.craft{
+  padding:120px 7%;
+  background:#e9dfcf;
 }
 
-.kids-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.craft-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:8%;
+  align-items:center;
 }
 
-.kids-card {
-    position: relative;
-    min-height: 560px;
-    overflow: hidden;
+.craft h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(50px,7vw,90px);
+  line-height:.85;
+  font-weight:500;
 }
-
-.kids-image {
-    position: absolute;
-    inset: 0;
 
-    background-size: cover;
-    background-position: center;
-
-    transition: 0.7s;
+.craft p{
+  margin-top:30px;
+  max-width:420px;
+  line-height:1.9;
+  font-size:13px;
+  color:#665b4e;
 }
 
-.kids-card:hover .kids-image {
-    transform: scale(1.04);
+.craft-image{
+  height:620px;
 }
-
-.kids-overlay {
-    position: absolute;
-    inset: 0;
 
-    background: linear-gradient(
-        to top,
-        rgba(50,40,25,0.7),
-        transparent 60%
-    );
-}
+/* KIDS */
 
-.kids-info {
-    position: absolute;
-    bottom: 28px;
-    left: 28px;
-    color: white;
+.kids{
+  padding:120px 6%;
 }
 
-.kids-info h3 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 45px;
-    font-weight: 500;
+.kids-title{
+  max-width:700px;
+  margin-bottom:55px;
 }
 
-.kids-info p {
-    margin-top: 5px;
-    font-size: 11px;
-    letter-spacing: 0.15em;
+.kids-title h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(55px,8vw,100px);
+  line-height:.8;
+  font-weight:500;
 }
-
-/* =========================
-   CRAFT
-========================= */
 
-.craft {
-    padding: 140px 5vw;
+.kids-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
-.craft-heading {
-    margin-bottom: 60px;
+.kids-card{
+  position:relative;
 }
 
-.craft-heading h2 {
-    margin-top: 20px;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(55px, 8vw, 115px);
-    line-height: 0.8;
-    font-weight: 500;
+.kids-card img{
+  height:420px;
 }
 
-.craft-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.kids-card h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
+  font-weight:500;
+  margin-top:15px;
 }
 
-.craft-card {
-    background: #ded2c2;
+.kids-card p{
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#766b60;
+  margin-top:5px;
 }
 
-.craft-image {
-    height: 350px;
-    background-size: cover;
-    background-position: center;
-}
+/* QUOTE */
 
-.craft-text {
-    padding: 22px;
+.quote{
+  padding:150px 7%;
+  text-align:center;
+  background:var(--red);
+  color:#f8eee0;
 }
 
-.craft-text h3 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 30px;
-    font-weight: 500;
+.quote p{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(45px,7vw,90px);
+  line-height:.9;
+  max-width:950px;
+  margin:auto;
 }
 
-.craft-text p {
-    margin-top: 8px;
-    font-size: 12px;
-    line-height: 1.6;
-    opacity: 0.7;
+.quote span{
+  display:block;
+  margin-top:35px;
+  font-size:9px;
+  letter-spacing:4px;
 }
-
-/* =========================
-   FINAL CTA
-========================= */
-
-.final {
-    min-height: 75vh;
 
-    background:
-        linear-gradient(
-            rgba(45,32,23,0.55),
-            rgba(45,32,23,0.55)
-        ),
-        url("images/final.jpg");
+/* FOOTER */
 
-    background-size: cover;
-    background-position: center;
-
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 80px 5vw;
-}
-
-.final h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(65px, 12vw, 180px);
-    line-height: 0.75;
-    font-weight: 500;
+footer{
+  background:#211c18;
+  color:#e9dfcf;
+  padding:70px 7% 35px;
 }
 
-.final p {
-    max-width: 480px;
-    margin: 35px auto;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 24px;
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  padding-bottom:70px;
 }
-
-/* =========================
-   FOOTER
-========================= */
 
-footer {
-    padding: 55px 5vw;
-
-    background: var(--brown-dark);
-    color: var(--cream);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.footer-logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:55px;
+  letter-spacing:5px;
 }
 
-.footer-logo {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 35px;
-    letter-spacing: 0.15em;
+.footer-text{
+  max-width:300px;
+  font-size:11px;
+  line-height:1.8;
+  color:#a99e91;
 }
 
-footer p {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    opacity: 0.6;
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:25px;
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  letter-spacing:1px;
+  color:#9f9488;
 }
-
-/* =========================
-   MOBILE
-========================= */
 
-@media (max-width: 800px) {
+/* MOBILE */
 
-    .navbar {
-        padding: 18px 5vw;
-    }
+@media(max-width:700px){
 
-    .logo {
-        font-size: 24px;
-    }
+  nav{
+    padding:20px 5%;
+  }
 
-    .nav-links {
-        display: none;
-    }
+  .logo{
+    font-size:24px;
+  }
 
-    .hero {
-        min-height: 92svh;
-        padding: 30px 6vw 55px;
-        background-position: 62% center;
-    }
+  .nav-links{
+    display:none;
+  }
 
-    .hero h1 {
-        font-size: clamp(70px, 22vw, 125px);
-    }
+  .menu{
+    display:block;
+    font-size:10px;
+    letter-spacing:2px;
+  }
 
-    .hero-subtitle {
-        font-size: 20px;
-        max-width: 330px;
-    }
+  .hero{
+    min-height:90vh;
+    padding:0 6% 50px;
+    background-position:60% center;
+  }
 
-    .hero-number {
-        display: none;
-    }
+  .hero h1{
+    font-size:78px;
+    letter-spacing:-3px;
+  }
 
-    .intro {
-        padding: 90px 7vw;
-        display: block;
-    }
+  .hero-bottom{
+    display:block;
+  }
 
-    .intro-text {
-        margin-top: 45px;
-        font-size: 22px;
-    }
+  .hero-description{
+    margin-bottom:25px;
+  }
 
-    .collection {
-        padding: 70px 5vw 90px;
-    }
+  .intro{
+    padding:85px 7%;
+    display:block;
+  }
 
-    .collection-header {
-        margin-bottom: 35px;
-    }
+  .intro h2{
+    margin:25px 0 45px;
+  }
 
-    .collection-grid {
-        grid-template-columns: 1fr;
-    }
+  .story{
+    padding:80px 6%;
+  }
 
-    .collection-card {
-        min-height: 560px;
-    }
+  .story-grid{
+    display:block;
+  }
 
-    .collection-card.small {
-        margin-top: 0;
-        min-height: 460px;
-    }
+  .story-image{
+    height:420px;
+    margin-bottom:55px;
+  }
 
-    .story {
-        padding: 90px 7vw;
-        display: block;
-    }
+  .collections{
+    padding:85px 6%;
+  }
 
-    .story-copy {
-        margin-top: 55px;
-    }
+  .section-head{
+    display:block;
+  }
 
-    .story-copy p {
-        font-size: 24px;
-    }
+  .section-head h2{
+    font-size:60px;
+    margin-top:25px;
+  }
 
-    .product-feature {
-        padding: 90px 5vw;
-    }
+  .section-number{
+    display:block;
+  }
 
-    .product-layout {
-        grid-template-columns: 1fr;
-    }
+  .collection-grid{
+    display:block;
+  }
 
-    .product-main {
-        min-height: 500px;
-    }
+  .collection-card,
+  .collection-card.small{
+    min-height:480px;
+    margin-bottom:18px;
+  }
 
-    .product-detail {
-        min-height: 280px;
-    }
+  .craft{
+    padding:85px 6%;
+  }
 
-    .kids {
-        padding: 90px 5vw;
-    }
+  .craft-grid{
+    display:block;
+  }
 
-    .kids-grid {
-        grid-template-columns: 1fr;
-    }
+  .craft-image{
+    height:450px;
+    margin-top:50px;
+  }
 
-    .kids-card {
-        min-height: 500px;
-    }
+  .kids{
+    padding:85px 6%;
+  }
 
-    .craft {
-        padding: 90px 5vw;
-    }
+  .kids-grid{
+    grid-template-columns:1fr;
+  }
 
-    .craft-grid {
-        grid-template-columns: 1fr;
-    }
+  .kids-card img{
+    height:430px;
+  }
 
-    .craft-image {
-        height: 300px;
-    }
+  .quote{
+    padding:110px 7%;
+  }
 
-    .final {
-        min-height: 70vh;
-    }
+  .footer-top{
+    display:block;
+  }
 
-    footer {
-        padding: 40px 6vw;
-        display: block;
-        text-align: center;
-    }
+  .footer-text{
+    margin-top:25px;
+  }
 
-    footer p {
-        margin-top: 15px;
-    }
+  .footer-bottom{
+    display:block;
+    line-height:2;
+  }
 }
 
 </style>
@@ -781,19 +589,17 @@ footer p {
 
 <body>
 
-<!-- NAVIGATION -->
+<nav>
+  <div class="logo">ROCHAYA</div>
 
-<nav class="navbar" id="navbar">
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#collections">Collections</a>
+    <a href="#craft">Craft</a>
+    <a href="#kids">Kids</a>
+  </div>
 
-    <a href="#" class="logo">ROCHAYA</a>
-
-    <div class="nav-links">
-        <a href="#story">Story</a>
-        <a href="#collections">Collections</a>
-        <a href="#kids">Kids</a>
-        <a href="#craft">Craft</a>
-    </div>
-
+  <div class="menu">MENU +</div>
 </nav>
 
 
@@ -801,32 +607,32 @@ footer p {
 
 <section class="hero">
 
-    <div class="hero-content">
+  <div class="hero-content">
 
-        <div class="eyebrow">
-            Indonesian Heritage • Everyday Stories
-        </div>
+    <div class="eyebrow">
+      Indonesian Heritage · Since 2026
+    </div>
 
-        <h1>
-            ROCHAYA
-        </h1>
+    <h1>
+      CARRY<br>
+      <span>THE STORY.</span>
+    </h1>
 
-        <div class="hero-subtitle">
-            For what they built.<br>
-            For the stories we carry forward.
-        </div>
+    <div class="hero-bottom">
 
-        <div class="hero-actions">
-            <a href="#collections" class="button">
-                Explore Collection
-            </a>
-        </div>
+      <p class="hero-description">
+        Bags made to carry more than things.
+        Designed around stories, memories,
+        family and generations.
+      </p>
+
+      <a class="button" href="#collections">
+        Explore Collection →
+      </a>
 
     </div>
 
-    <div class="hero-number">
-        01 / ROCHAYA
-    </div>
+  </div>
 
 </section>
 
@@ -835,111 +641,22 @@ footer p {
 
 <section class="intro">
 
-    <div>
+  <div>
+    <div class="small-label">01 — Philosophy</div>
+  </div>
 
-        <div class="section-label">
-            The Philosophy
-        </div>
+  <div>
+    <h2>
+      MADE TO CARRY<br>
+      MORE THAN THINGS.
+    </h2>
 
-        <h2>
-            Made to carry<br>
-            more than things.
-        </h2>
-
-    </div>
-
-    <div class="intro-text">
-
-        <p>
-            ROCHAYA was born from a simple belief:
-            the things we carry can hold much more than
-            what fits inside them.
-        </p>
-
-        <p>
-            They can carry memories, sacrifice,
-            family, and the quiet stories that
-            shape who we become.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- COLLECTION -->
-
-<section class="collection" id="collections">
-
-    <div class="collection-header">
-
-        <div>
-            <div class="section-label">
-                01 — Collections
-            </div>
-
-            <h2 class="collection-title">
-                Heritage
-            </h2>
-        </div>
-
-        <div class="collection-count">
-            01 / 03
-        </div>
-
-    </div>
-
-
-    <div class="collection-grid">
-
-        <a class="collection-card" href="#heritage">
-
-            <div
-                class="card-image"
-                style="background-image:url('images/heritage-tote.jpg');">
-            </div>
-
-            <div class="card-overlay"></div>
-
-            <div class="card-info">
-
-                <span>
-                    Everyday Heritage
-                </span>
-
-                <h3>
-                    Heritage Tote
-                </h3>
-
-            </div>
-
-        </a>
-
-
-        <a class="collection-card small" href="#backpack">
-
-            <div
-                class="card-image"
-                style="background-image:url('images/backpack.jpg');">
-            </div>
-
-            <div class="card-overlay"></div>
-
-            <div class="card-info">
-
-                <span>
-                    Built for the Journey
-                </span>
-
-                <h3>
-                    Heritage Pack
-                </h3>
-
-            </div>
-
-        </a>
-
-    </div>
+    <p class="intro-text">
+      ROCHAYA is a heritage-inspired bag brand
+      born from a simple belief: the things we carry
+      should have a story worth remembering.
+    </p>
+  </div>
 
 </section>
 
@@ -948,204 +665,101 @@ footer p {
 
 <section class="story" id="story">
 
+  <div class="story-grid">
+
+    <img
+      class="story-image"
+      src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=85"
+      alt="ROCHAYA heritage bag"
+    >
+
     <div>
 
-        <div class="section-label">
-            02 — Our Story
-        </div>
+      <div class="small-label">
+        02 — The Story
+      </div>
 
-        <h2>
-            A story<br>
-            worth<br>
-            carrying.
-        </h2>
+      <h2>
+        BORN<br>
+        FROM<br>
+        FAMILY.
+      </h2>
 
-    </div>
+      <div class="red-line"></div>
 
+      <p>
+        ROCHAYA carries the spirit of family,
+        perseverance and the beauty of Indonesian
+        heritage.
 
-    <div class="story-copy">
+        <br><br>
 
-        <p>
-            “For what they built, and for the
-            generations that come after.”
-        </p>
-
-        <p>
-            ROCHAYA is inspired by the strength,
-            patience, sacrifice, and love of parents
-            who build a better tomorrow for their
-            children.
-
-            Every piece is designed to become part
-            of that journey — practical enough for
-            everyday life, yet meaningful enough
-            to be remembered.
-        </p>
+        Every piece is imagined as something that
+        can travel with you today — and remain
+        meaningful tomorrow.
+      </p>
 
     </div>
+
+  </div>
 
 </section>
 
 
-<!-- HERITAGE TOTE -->
+<!-- COLLECTION -->
 
-<section class="product-feature" id="heritage">
+<section class="collections" id="collections">
 
-    <div class="product-heading">
+  <div class="section-head">
 
-        <div>
+    <div>
+      <div class="small-label">03 — Collections</div>
 
-            <div class="section-label">
-                03 — Signature Collection
-            </div>
+      <h2>
+        OUR<br>
+        COLLECTIONS
+      </h2>
+    </div>
 
-            <h2>
-                Heritage<br>
-                Tote
-            </h2>
+    <div class="section-number">
+      ROCHAYA / 001
+    </div>
 
-        </div>
+  </div>
 
-        <div class="product-number">
-            01
-        </div>
+
+  <div class="collection-grid">
+
+    <div class="collection-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=85"
+        alt="Heritage collection"
+      >
+
+      <div class="card-overlay">
+        <h3>Heritage Classics</h3>
+        <span>Timeless everyday pieces →</span>
+      </div>
 
     </div>
 
 
-    <div class="product-layout">
+    <div class="collection-card small">
 
-        <div
-            class="product-main"
-            style="background-image:url('images/heritage-tote.jpg');">
-        </div>
+      <img
+        src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1000&q=85"
+        alt="Everyday collection"
+      >
 
-
-        <div class="product-side">
-
-            <div
-                class="product-detail"
-                style="background-image:url('images/tote-detail.jpg');">
-            </div>
-
-            <div
-                class="product-detail"
-                style="background-image:url('images/tote-lifestyle.jpg');">
-            </div>
-
-        </div>
+      <div class="card-overlay">
+        <h3>Everyday Carry</h3>
+        <span>Made for daily stories →</span>
+      </div>
 
     </div>
 
-
-    <div class="product-caption">
-
-        <span>
-            Light carry. Deeper stories.
-        </span>
-
-        <span>
-            42 × 28 × 12 cm
-        </span>
-
-    </div>
-
-</section>
-
-
-<!-- KIDS -->
-
-<section class="kids" id="kids">
-
-    <div class="kids-header">
-
-        <div class="section-label">
-            04 — Kids Heritage
-        </div>
-
-        <h2>
-            Little stories.<br>
-            Big adventures.
-        </h2>
-
-    </div>
-
-
-    <div class="kids-grid">
-
-
-        <a class="kids-card">
-
-            <div
-                class="kids-image"
-                style="background-image:url('images/sunny-trail.jpg');">
-            </div>
-
-            <div class="kids-overlay"></div>
-
-            <div class="kids-info">
-
-                <h3>
-                    Sunny Trail
-                </h3>
-
-                <p>
-                    SMALL STEPS • BIGGER STORIES
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <a class="kids-card">
-
-            <div
-                class="kids-image"
-                style="background-image:url('images/river-days.jpg');">
-            </div>
-
-            <div class="kids-overlay"></div>
-
-            <div class="kids-info">
-
-                <h3>
-                    River Days
-                </h3>
-
-                <p>
-                    LITTLE ADVENTURES
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <a class="kids-card">
-
-            <div
-                class="kids-image"
-                style="background-image:url('images/forest-friends.jpg');">
-            </div>
-
-            <div class="kids-overlay"></div>
-
-            <div class="kids-info">
-
-                <h3>
-                    Forest Friends
-                </h3>
-
-                <p>
-                    CURIOUS MINDS
-                </p>
-
-            </div>
-
-        </a>
-
-    </div>
+  </div>
 
 </section>
 
@@ -1154,124 +768,117 @@ footer p {
 
 <section class="craft" id="craft">
 
-    <div class="craft-heading">
+  <div class="craft-grid">
 
-        <div class="section-label">
-            05 — Details
-        </div>
+    <div>
 
-        <h2>
-            Made with<br>
-            intention.
-        </h2>
+      <div class="small-label">
+        04 — Craft
+      </div>
 
-    </div>
+      <h2>
+        MADE<br>
+        WITH<br>
+        INTENTION.
+      </h2>
 
-
-    <div class="craft-grid">
-
-
-        <div class="craft-card">
-
-            <div
-                class="craft-image"
-                style="background-image:url('images/emblem.jpg');">
-            </div>
-
-            <div class="craft-text">
-
-                <h3>
-                    The Emblem
-                </h3>
-
-                <p>
-                    A hornbill emblem inspired by
-                    heritage, strength, and the
-                    journey of generations.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="craft-card">
-
-            <div
-                class="craft-image"
-                style="background-image:url('images/material.jpg');">
-            </div>
-
-            <div class="craft-text">
-
-                <h3>
-                    Material
-                </h3>
-
-                <p>
-                    Textures and materials chosen
-                    to balance everyday function
-                    with timeless character.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="craft-card">
-
-            <div
-                class="craft-image"
-                style="background-image:url('images/zipper.jpg');">
-            </div>
-
-            <div class="craft-text">
-
-                <h3>
-                    Every Detail
-                </h3>
-
-                <p>
-                    From hardware to stitching,
-                    every small detail is part
-                    of the ROCHAYA identity.
-                </p>
-
-            </div>
-
-        </div>
+      <p>
+        Dari material, bentuk, warna hingga detail
+        kecil — setiap elemen ROCHAYA dirancang
+        untuk terasa sederhana, kuat dan memiliki
+        karakter.
+      </p>
 
     </div>
+
+    <img
+      class="craft-image"
+      src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=1200&q=85"
+      alt="Craftsmanship"
+    >
+
+  </div>
 
 </section>
 
 
-<!-- FINAL -->
+<!-- KIDS -->
 
-<section class="final">
+<section class="kids" id="kids">
 
-    <div>
+  <div class="kids-title">
 
-        <div class="section-label">
-            ROCHAYA
-        </div>
+    <div class="small-label">
+      05 — Little Stories
+    </div>
 
-        <h2>
-            Carry<br>
-            your story.
-        </h2>
+    <h2>
+      LITTLE STORIES.<br>
+      BIG ADVENTURES.
+    </h2>
 
-        <p>
-            A journey begins with something
-            worth carrying.
-        </p>
+  </div>
 
-        <a href="#collections" class="button">
-            Explore ROCHAYA
-        </a>
+
+  <div class="kids-grid">
+
+    <div class="kids-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=900&q=85"
+        alt="River Days"
+      >
+
+      <h3>River Days</h3>
+      <p>For little explorers</p>
 
     </div>
+
+
+    <div class="kids-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=900&q=85"
+        alt="Sunny Trail"
+      >
+
+      <h3>Sunny Trail</h3>
+      <p>For bright little days</p>
+
+    </div>
+
+
+    <div class="kids-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=85"
+        alt="Forest Friends"
+      >
+
+      <h3>Forest Friends</h3>
+      <p>For curious little hearts</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL MESSAGE -->
+
+<section class="quote">
+
+  <p>
+    SOME THINGS ARE MADE
+    TO BE CARRIED.
+    SOME ARE MADE TO
+    BE REMEMBERED.
+  </p>
+
+  <span>
+    ROCHAYA — CARRY YOUR STORY
+  </span>
 
 </section>
 
@@ -1280,32 +887,37 @@ footer p {
 
 <footer>
 
+  <div class="footer-top">
+
     <div class="footer-logo">
-        ROCHAYA
+      ROCHAYA
     </div>
 
-    <p>
-        FOR WHAT THEY BUILT. © 2026 ROCHAYA
-    </p>
+    <div class="footer-text">
+      Heritage-inspired bags made with
+      intention, memory and story.
+
+      <br><br>
+
+      Indonesia · 2026
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <div>
+      © 2026 ROCHAYA
+    </div>
+
+    <div>
+      HERITAGE · CRAFT · STORY
+    </div>
+
+  </div>
 
 </footer>
-
-
-<script>
-
-const navbar = document.getElementById("navbar");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 60) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-
-});
-
-</script>
 
 </body>
 </html>
