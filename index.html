@@ -11,577 +11,962 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
-  --cream:#f4efe5;
-  --paper:#faf7f0;
-  --brown:#40352c;
-  --brown-dark:#211c18;
-  --red:#8f302d;
-  --gold:#a88955;
-  --line:rgba(64,53,44,.2);
+    --cream:#f4efe5;
+    --paper:#faf7f0;
+    --brown:#40352b;
+    --brown-dark:#211c18;
+    --brown-soft:#69594b;
+    --red:#8f302d;
+    --gold:#a88955;
+    --line:rgba(64,53,44,.18);
+    --white:#fffdf8;
 }
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  background:var(--paper);
-  color:var(--brown);
-  font-family:"DM Sans",sans-serif;
+    background:var(--paper);
+    color:var(--brown);
+    font-family:"DM Sans", sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
 }
 
 img{
-  width:100%;
-  display:block;
-  object-fit:cover;
+    width:100%;
+    display:block;
 }
 
 a{
-  color:inherit;
-  text-decoration:none;
+    color:inherit;
+    text-decoration:none;
 }
 
-/* NAVIGATION */
-
-nav{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:10;
-  padding:22px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:white;
+button{
+    font-family:inherit;
 }
 
-.logo{
-  font-family:"Cormorant Garamond",serif;
-  font-size:29px;
-  font-weight:700;
-  letter-spacing:4px;
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container{
+    width:min(1200px, calc(100% - 48px));
+    margin:auto;
 }
 
-.nav-links{
-  display:flex;
-  gap:28px;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.menu{
-  display:none;
-}
-
-/* HERO */
-
-.hero{
-  min-height:100vh;
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(20,15,12,.72),
-      rgba(20,15,12,.12)
-    ),
-    url("https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1800&q=85");
-  background-size:cover;
-  background-position:center;
-  color:white;
-  display:flex;
-  align-items:flex-end;
-  padding:0 6% 9vh;
-}
-
-.hero-content{
-  max-width:800px;
+.serif{
+    font-family:"Cormorant Garamond", serif;
 }
 
 .eyebrow{
-  font-size:10px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  margin-bottom:22px;
-  opacity:.8;
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:600;
 }
 
-.hero h1{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(70px,16vw,180px);
-  line-height:.76;
-  font-weight:500;
-  letter-spacing:-5px;
+.section{
+    padding:120px 0;
 }
 
-.hero h1 span{
-  color:#e7d8b8;
+.line{
+    width:100%;
+    height:1px;
+    background:var(--line);
 }
 
-.hero-bottom{
-  margin-top:35px;
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:30px;
-  max-width:900px;
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    padding:14px 22px;
+    border:1px solid var(--brown);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:.3s ease;
+}
+
+.btn:hover{
+    background:var(--brown);
+    color:var(--paper);
+}
+
+.btn-dark{
+    border-color:var(--paper);
+    color:var(--paper);
+}
+
+.btn-dark:hover{
+    background:var(--paper);
+    color:var(--brown-dark);
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    padding:22px 0;
+    transition:.4s ease;
+}
+
+.navbar.scrolled{
+    background:rgba(250,247,240,.92);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+    width:min(1300px, calc(100% - 48px));
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:"Cormorant Garamond", serif;
+    font-size:30px;
+    font-weight:600;
+    letter-spacing:4px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.nav-links a{
+    position:relative;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:1px;
+    background:var(--red);
+    transition:.3s ease;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.menu-button{
+    display:none;
+    background:none;
+    border:0;
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+    padding:130px 0 60px;
+    display:flex;
+    align-items:center;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1.35fr;
+    gap:55px;
+    align-items:center;
+}
+
+.hero-copy{
+    position:relative;
+    z-index:2;
+}
+
+.hero-number{
+    margin-bottom:30px;
+    color:var(--red);
+}
+
+.hero-title{
+    font-family:"Cormorant Garamond", serif;
+    font-size:clamp(75px, 10vw, 155px);
+    line-height:.78;
+    font-weight:500;
+    letter-spacing:-5px;
+}
+
+.hero-title span{
+    display:block;
+}
+
+.hero-title .outline{
+    color:transparent;
+    -webkit-text-stroke:1px var(--brown);
 }
 
 .hero-description{
-  max-width:330px;
-  font-size:12px;
-  line-height:1.8;
-  opacity:.85;
+    max-width:390px;
+    margin-top:45px;
+    color:var(--brown-soft);
+    font-size:14px;
+    line-height:1.8;
 }
 
-.button{
-  display:inline-block;
-  border:1px solid rgba(255,255,255,.55);
-  padding:15px 22px;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
+.hero-actions{
+    display:flex;
+    gap:12px;
+    margin-top:30px;
+    flex-wrap:wrap;
 }
 
-/* INTRO */
+.hero-image-wrap{
+    position:relative;
+}
+
+.hero-image{
+    aspect-ratio:4/5;
+    object-fit:cover;
+    background:
+        linear-gradient(135deg,#d8c6a9,#87735c);
+}
+
+.hero-card{
+    position:absolute;
+    right:-35px;
+    bottom:35px;
+    width:210px;
+    background:var(--paper);
+    padding:22px;
+    border:1px solid var(--line);
+}
+
+.hero-card-number{
+    font-family:"Cormorant Garamond", serif;
+    font-size:38px;
+}
+
+.hero-card p{
+    font-size:11px;
+    line-height:1.7;
+    color:var(--brown-soft);
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
 
 .intro{
-  padding:120px 7%;
-  display:grid;
-  grid-template-columns:1fr 1.5fr;
-  gap:8%;
+    background:var(--cream);
 }
 
-.small-label{
-  font-size:9px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:var(--red);
+.intro-grid{
+    display:grid;
+    grid-template-columns:.7fr 1.5fr;
+    gap:80px;
 }
 
-.intro h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(42px,7vw,82px);
-  line-height:.9;
-  font-weight:500;
+.intro-title{
+    font-family:"Cormorant Garamond", serif;
+    font-size:clamp(48px,6vw,82px);
+    line-height:.95;
+    max-width:850px;
 }
 
-.intro-text{
-  align-self:end;
-  max-width:520px;
-  font-size:14px;
-  line-height:1.9;
-  color:#62574c;
+.intro-title em{
+    color:var(--red);
 }
 
-/* STORY */
-
-.story{
-  background:var(--brown-dark);
-  color:var(--cream);
-  padding:110px 7%;
+.intro-copy{
+    margin-top:40px;
+    max-width:560px;
+    color:var(--brown-soft);
+    font-size:15px;
 }
 
-.story-grid{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:7%;
-  align-items:center;
+.intro-values{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    margin-top:80px;
 }
 
-.story-image{
-  height:600px;
-  object-fit:cover;
+.value{
+    border-top:1px solid var(--line);
+    padding-top:18px;
 }
 
-.story h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(50px,7vw,90px);
-  line-height:.88;
-  font-weight:500;
-  margin:25px 0;
+.value-number{
+    color:var(--red);
+    font-size:11px;
+    letter-spacing:2px;
 }
 
-.story p{
-  max-width:430px;
-  line-height:1.9;
-  font-size:13px;
-  color:#cfc4b4;
+.value h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px;
+    margin:12px 0;
 }
 
-.red-line{
-  width:45px;
-  height:2px;
-  background:var(--red);
-  margin:30px 0;
+.value p{
+    color:var(--brown-soft);
+    font-size:12px;
+    line-height:1.8;
 }
 
-/* COLLECTION */
+/* =========================================================
+   COLLECTION
+========================================================= */
 
-.collections{
-  padding:120px 6%;
+.collection-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+    margin-bottom:60px;
 }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:55px;
+.collection-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,7vw,95px);
+    line-height:.85;
 }
 
-.section-head h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:70px;
-  font-weight:500;
-  line-height:.8;
-}
-
-.section-number{
-  font-size:10px;
-  letter-spacing:2px;
+.collection-description{
+    max-width:320px;
+    font-size:12px;
+    color:var(--brown-soft);
 }
 
 .collection-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:25px;
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    gap:20px;
 }
 
-.collection-card{
-  position:relative;
-  overflow:hidden;
-  min-height:580px;
-  background:#ddd;
+.product-card{
+    position:relative;
+    overflow:hidden;
+    background:#ddd;
 }
 
-.collection-card.small{
-  min-height:420px;
+.product-card.large{
+    aspect-ratio:4/5;
 }
 
-.collection-card img{
-  height:100%;
-  position:absolute;
-  inset:0;
-  transition:transform .7s ease;
+.product-card.small{
+    aspect-ratio:4/5;
+    margin-top:100px;
 }
 
-.collection-card:hover img{
-  transform:scale(1.04);
+.product-card img{
+    height:100%;
+    object-fit:cover;
+    transition:transform .8s ease;
 }
 
-.card-overlay{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:30px;
-  color:white;
-  background:linear-gradient(
-    transparent 45%,
-    rgba(0,0,0,.65)
-  );
+.product-card:hover img{
+    transform:scale(1.04);
 }
 
-.card-overlay h3{
-  font-family:"Cormorant Garamond",serif;
-  font-size:42px;
-  font-weight:500;
+.product-overlay{
+    position:absolute;
+    inset:auto 0 0 0;
+    padding:35px 28px 28px;
+    color:white;
+    background:linear-gradient(transparent,rgba(0,0,0,.65));
 }
 
-.card-overlay span{
-  font-size:9px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-top:8px;
+.product-category{
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
-/* CRAFT */
-
-.craft{
-  padding:120px 7%;
-  background:#e9dfcf;
+.product-name{
+    font-family:"Cormorant Garamond",serif;
+    font-size:42px;
+    line-height:1;
+    margin-top:5px;
 }
+
+/* =========================================================
+   DARK STORY
+========================================================= */
+
+.story-dark{
+    background:var(--brown-dark);
+    color:var(--paper);
+    padding:150px 0;
+}
+
+.story-grid{
+    display:grid;
+    grid-template-columns:.7fr 1.5fr;
+    gap:80px;
+}
+
+.story-dark .eyebrow{
+    color:#c8ad7b;
+}
+
+.story-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(60px,8vw,120px);
+    line-height:.85;
+    font-weight:400;
+}
+
+.story-title em{
+    color:#b76560;
+}
+
+.story-copy{
+    max-width:570px;
+    margin-top:50px;
+    color:#c9c0b5;
+    font-size:15px;
+    line-height:2;
+}
+
+.story-signature{
+    margin-top:45px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:35px;
+}
+
+/* =========================================================
+   CRAFT
+========================================================= */
 
 .craft-grid{
-  display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:8%;
-  align-items:center;
-}
-
-.craft h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(50px,7vw,90px);
-  line-height:.85;
-  font-weight:500;
-}
-
-.craft p{
-  margin-top:30px;
-  max-width:420px;
-  line-height:1.9;
-  font-size:13px;
-  color:#665b4e;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
 .craft-image{
-  height:620px;
+    aspect-ratio:1/1;
+    overflow:hidden;
 }
 
-/* KIDS */
+.craft-image img{
+    height:100%;
+    object-fit:cover;
+    transition:.8s ease;
+}
+
+.craft-image:hover img{
+    transform:scale(1.04);
+}
+
+.craft-content{
+    padding:50px;
+    background:var(--cream);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.craft-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,6vw,85px);
+    line-height:.9;
+    margin:20px 0 30px;
+}
+
+.craft-text{
+    max-width:450px;
+    color:var(--brown-soft);
+    font-size:14px;
+    line-height:1.9;
+}
+
+/* =========================================================
+   KIDS
+========================================================= */
 
 .kids{
-  padding:120px 6%;
+    background:var(--cream);
+}
+
+.kids-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:40px;
+    margin-bottom:60px;
 }
 
 .kids-title{
-  max-width:700px;
-  margin-bottom:55px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(60px,8vw,110px);
+    line-height:.8;
 }
 
-.kids-title h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(55px,8vw,100px);
-  line-height:.8;
-  font-weight:500;
+.kids-title span{
+    color:var(--red);
+}
+
+.kids-description{
+    max-width:320px;
+    color:var(--brown-soft);
+    font-size:12px;
 }
 
 .kids-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
 .kids-card{
-  position:relative;
+    position:relative;
+    aspect-ratio:3/4;
+    overflow:hidden;
 }
 
 .kids-card img{
-  height:420px;
+    height:100%;
+    object-fit:cover;
+    transition:.8s ease;
 }
 
-.kids-card h3{
-  font-family:"Cormorant Garamond",serif;
-  font-size:30px;
-  font-weight:500;
-  margin-top:15px;
+.kids-card:hover img{
+    transform:scale(1.05);
 }
 
-.kids-card p{
-  font-size:10px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:#766b60;
-  margin-top:5px;
+.kids-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:30px 22px 22px;
+    background:linear-gradient(transparent,rgba(0,0,0,.7));
+    color:white;
 }
 
-/* QUOTE */
-
-.quote{
-  padding:150px 7%;
-  text-align:center;
-  background:var(--red);
-  color:#f8eee0;
+.kids-info span{
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
-.quote p{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(45px,7vw,90px);
-  line-height:.9;
-  max-width:950px;
-  margin:auto;
+.kids-info h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:34px;
+    line-height:1;
+    margin-top:5px;
 }
 
-.quote span{
-  display:block;
-  margin-top:35px;
-  font-size:9px;
-  letter-spacing:4px;
+/* =========================================================
+   STORY IMAGE
+========================================================= */
+
+.family-story{
+    padding:0;
 }
 
-/* FOOTER */
+.family-image{
+    position:relative;
+    min-height:75vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.family-image img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(.58);
+}
+
+.family-content{
+    position:relative;
+    z-index:2;
+    width:min(900px,calc(100% - 48px));
+    margin:auto;
+    color:white;
+}
+
+.family-content .eyebrow{
+    color:#d5b67d;
+}
+
+.family-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(60px,9vw,130px);
+    line-height:.8;
+    margin:20px 0 35px;
+}
+
+.family-text{
+    max-width:550px;
+    color:#eee;
+    font-size:14px;
+    line-height:1.9;
+}
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.final-cta{
+    padding:150px 0;
+    text-align:center;
+}
+
+.final-cta .eyebrow{
+    color:var(--red);
+}
+
+.final-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(70px,11vw,150px);
+    line-height:.78;
+    margin:25px auto 45px;
+    max-width:1100px;
+}
+
+.final-title span{
+    color:var(--red);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
-  background:#211c18;
-  color:#e9dfcf;
-  padding:70px 7% 35px;
+    background:var(--brown-dark);
+    color:var(--paper);
+    padding:70px 0 30px;
 }
 
 .footer-top{
-  display:flex;
-  justify-content:space-between;
-  gap:40px;
-  padding-bottom:70px;
+    display:flex;
+    justify-content:space-between;
+    gap:50px;
 }
 
 .footer-logo{
-  font-family:"Cormorant Garamond",serif;
-  font-size:55px;
-  letter-spacing:5px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:55px;
+    letter-spacing:4px;
 }
 
-.footer-text{
-  max-width:300px;
-  font-size:11px;
-  line-height:1.8;
-  color:#a99e91;
+.footer-tagline{
+    color:#aaa198;
+    max-width:300px;
+    margin-top:10px;
+    font-size:12px;
+}
+
+.footer-links{
+    display:flex;
+    gap:60px;
+}
+
+.footer-column h4{
+    font-size:9px;
+    letter-spacing:2px;
+    color:#a88955;
+    margin-bottom:18px;
+}
+
+.footer-column a{
+    display:block;
+    font-size:12px;
+    margin-bottom:10px;
+    color:#d5d0c9;
 }
 
 .footer-bottom{
-  border-top:1px solid rgba(255,255,255,.15);
-  padding-top:25px;
-  display:flex;
-  justify-content:space-between;
-  font-size:9px;
-  letter-spacing:1px;
-  color:#9f9488;
+    margin-top:70px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.12);
+    display:flex;
+    justify-content:space-between;
+    color:#77716a;
+    font-size:10px;
 }
 
-/* MOBILE */
+/* =========================================================
+   WHATSAPP
+========================================================= */
 
-@media(max-width:700px){
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:999;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:var(--red);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+    transition:.3s ease;
+}
 
-  nav{
-    padding:20px 5%;
-  }
+.whatsapp:hover{
+    transform:translateY(-4px);
+}
 
-  .logo{
-    font-size:24px;
-  }
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
 
-  .nav-links{
-    display:none;
-  }
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .9s ease, transform .9s ease;
+}
 
-  .menu{
-    display:block;
-    font-size:10px;
-    letter-spacing:2px;
-  }
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
 
-  .hero{
-    min-height:90vh;
-    padding:0 6% 50px;
-    background-position:60% center;
-  }
+/* =========================================================
+   MOBILE
+========================================================= */
 
-  .hero h1{
-    font-size:78px;
-    letter-spacing:-3px;
-  }
+@media(max-width:800px){
 
-  .hero-bottom{
-    display:block;
-  }
+    .container{
+        width:calc(100% - 30px);
+    }
 
-  .hero-description{
-    margin-bottom:25px;
-  }
+    .section{
+        padding:80px 0;
+    }
 
-  .intro{
-    padding:85px 7%;
-    display:block;
-  }
+    .nav-inner{
+        width:calc(100% - 30px);
+    }
 
-  .intro h2{
-    margin:25px 0 45px;
-  }
+    .nav-links{
+        position:absolute;
+        top:70px;
+        left:15px;
+        right:15px;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:22px;
+        padding:25px;
+        background:var(--paper);
+        border:1px solid var(--line);
+    }
 
-  .story{
-    padding:80px 6%;
-  }
+    .nav-links.active{
+        display:flex;
+    }
 
-  .story-grid{
-    display:block;
-  }
+    .menu-button{
+        display:block;
+    }
 
-  .story-image{
-    height:420px;
-    margin-bottom:55px;
-  }
+    .hero{
+        padding-top:110px;
+        min-height:auto;
+        padding-bottom:80px;
+    }
 
-  .collections{
-    padding:85px 6%;
-  }
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
 
-  .section-head{
-    display:block;
-  }
+    .hero-title{
+        font-size:76px;
+        letter-spacing:-3px;
+    }
 
-  .section-head h2{
-    font-size:60px;
-    margin-top:25px;
-  }
+    .hero-description{
+        margin-top:30px;
+    }
 
-  .section-number{
-    display:block;
-  }
+    .hero-card{
+        right:12px;
+        bottom:15px;
+        width:170px;
+        padding:16px;
+    }
 
-  .collection-grid{
-    display:block;
-  }
+    .intro-grid{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
 
-  .collection-card,
-  .collection-card.small{
-    min-height:480px;
-    margin-bottom:18px;
-  }
+    .intro-values{
+        grid-template-columns:1fr;
+        gap:30px;
+        margin-top:50px;
+    }
 
-  .craft{
-    padding:85px 6%;
-  }
+    .collection-header{
+        display:block;
+    }
 
-  .craft-grid{
-    display:block;
-  }
+    .collection-description{
+        margin-top:25px;
+    }
 
-  .craft-image{
-    height:450px;
-    margin-top:50px;
-  }
+    .collection-grid{
+        grid-template-columns:1fr;
+    }
 
-  .kids{
-    padding:85px 6%;
-  }
+    .product-card.small{
+        margin-top:0;
+    }
 
-  .kids-grid{
-    grid-template-columns:1fr;
-  }
+    .story-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
 
-  .kids-card img{
-    height:430px;
-  }
+    .story-dark{
+        padding:100px 0;
+    }
 
-  .quote{
-    padding:110px 7%;
-  }
+    .craft-grid{
+        grid-template-columns:1fr;
+    }
 
-  .footer-top{
-    display:block;
-  }
+    .craft-content{
+        padding:35px 25px;
+    }
 
-  .footer-text{
-    margin-top:25px;
-  }
+    .kids-header{
+        display:block;
+    }
 
-  .footer-bottom{
-    display:block;
-    line-height:2;
-  }
+    .kids-description{
+        margin-top:25px;
+    }
+
+    .kids-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .kids-card{
+        aspect-ratio:4/5;
+    }
+
+    .family-image{
+        min-height:650px;
+    }
+
+    .final-cta{
+        padding:100px 0;
+    }
+
+    .footer-top{
+        display:block;
+    }
+
+    .footer-links{
+        margin-top:50px;
+        gap:40px;
+    }
+
+    .footer-bottom{
+        display:block;
+    }
+
+    .footer-bottom div + div{
+        margin-top:8px;
+    }
+
+}
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media(max-width:420px){
+
+    .hero-title{
+        font-size:65px;
+    }
+
+    .logo{
+        font-size:25px;
+    }
+
+    .product-name{
+        font-size:34px;
+    }
+
+    .footer-links{
+        gap:25px;
+    }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation:none!important;
+        transition:none!important;
+    }
+
 }
 
 </style>
@@ -589,335 +974,825 @@ footer{
 
 <body>
 
-<nav>
-  <div class="logo">ROCHAYA</div>
+<!-- =======================================================
+     NAVBAR
+======================================================= -->
 
-  <div class="nav-links">
-    <a href="#story">Story</a>
-    <a href="#collections">Collections</a>
-    <a href="#craft">Craft</a>
-    <a href="#kids">Kids</a>
-  </div>
+<header class="navbar" id="navbar">
 
-  <div class="menu">MENU +</div>
-</nav>
+    <div class="nav-inner">
 
+        <a href="#home" class="logo">
+            ROCHAYA
+        </a>
 
-<!-- HERO -->
+        <button class="menu-button" id="menuButton" aria-label="Menu">
+            ☰
+        </button>
 
-<section class="hero">
+        <nav class="nav-links" id="navLinks">
 
-  <div class="hero-content">
+            <a href="#story">Story</a>
 
-    <div class="eyebrow">
-      Indonesian Heritage · Since 2026
-    </div>
+            <a href="#collection">Collections</a>
 
-    <h1>
-      CARRY<br>
-      <span>THE STORY.</span>
-    </h1>
+            <a href="#craft">Craft</a>
 
-    <div class="hero-bottom">
+            <a href="#kids">Kids</a>
 
-      <p class="hero-description">
-        Bags made to carry more than things.
-        Designed around stories, memories,
-        family and generations.
-      </p>
+            <a href="#contact">Shop</a>
 
-      <a class="button" href="#collections">
-        Explore Collection →
-      </a>
+        </nav>
 
     </div>
 
-  </div>
+</header>
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-grid">
+
+            <div class="hero-copy reveal">
+
+                <div class="hero-number eyebrow">
+                    01 / ROCHAYA
+                </div>
+
+                <h1 class="hero-title">
+                    <span>CARRY</span>
+                    <span class="outline">THE</span>
+                    <span>STORY.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Tas yang dibuat bukan hanya untuk membawa barang,
+                    tetapi untuk membawa cerita, kenangan,
+                    dan nilai yang terus berjalan bersama kita.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#collection" class="btn">
+                        Explore Collection →
+                    </a>
+
+                    <a href="#story" class="btn">
+                        Our Story
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-image-wrap reveal">
+
+                <img
+                    src="images/hero.jpg"
+                    alt="ROCHAYA heritage bag"
+                    class="hero-image"
+                >
+
+                <div class="hero-card">
+
+                    <div class="hero-card-number">
+                        01
+                    </div>
+
+                    <p>
+                        Heritage-inspired pieces,
+                        designed for everyday stories.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- INTRO -->
+<!-- =======================================================
+     INTRO
+======================================================= -->
 
-<section class="intro">
+<section class="section intro" id="story">
 
-  <div>
-    <div class="small-label">01 — Philosophy</div>
-  </div>
+    <div class="container">
 
-  <div>
-    <h2>
-      MADE TO CARRY<br>
-      MORE THAN THINGS.
-    </h2>
+        <div class="intro-grid">
 
-    <p class="intro-text">
-      ROCHAYA is a heritage-inspired bag brand
-      born from a simple belief: the things we carry
-      should have a story worth remembering.
-    </p>
-  </div>
+            <div class="eyebrow reveal">
+                The Philosophy
+            </div>
+
+            <div class="reveal">
+
+                <h2 class="intro-title">
+                    MADE TO CARRY
+                    <em>MORE</em>
+                    THAN THINGS.
+                </h2>
+
+                <p class="intro-copy">
+                    ROCHAYA lahir dari sebuah gagasan sederhana:
+                    bahwa sebuah tas dapat menjadi lebih dari sekadar
+                    benda yang digunakan setiap hari.
+                    Ia dapat menyimpan perjalanan,
+                    kenangan, dan cerita keluarga.
+                </p>
+
+                <div class="intro-values">
+
+                    <div class="value">
+
+                        <div class="value-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Heritage
+                        </h3>
+
+                        <p>
+                            Terinspirasi dari kekayaan visual
+                            dan karakter warisan Indonesia.
+                        </p>
+
+                    </div>
+
+
+                    <div class="value">
+
+                        <div class="value-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Craft
+                        </h3>
+
+                        <p>
+                            Setiap detail dibuat dengan perhatian,
+                            bukan sekadar mengejar produksi.
+                        </p>
+
+                    </div>
+
+
+                    <div class="value">
+
+                        <div class="value-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Story
+                        </h3>
+
+                        <p>
+                            Setiap produk memiliki ruang
+                            untuk menjadi bagian dari cerita pemiliknya.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- STORY -->
+<!-- =======================================================
+     COLLECTION
+======================================================= -->
 
-<section class="story" id="story">
+<section class="section" id="collection">
 
-  <div class="story-grid">
+    <div class="container">
 
-    <img
-      class="story-image"
-      src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=85"
-      alt="ROCHAYA heritage bag"
-    >
+        <div class="collection-header reveal">
 
-    <div>
+            <div>
 
-      <div class="small-label">
-        02 — The Story
-      </div>
+                <div class="eyebrow">
+                    02 / Collections
+                </div>
 
-      <h2>
-        BORN<br>
-        FROM<br>
-        FAMILY.
-      </h2>
+                <h2 class="collection-title">
+                    OUR<br>
+                    COLLECTIONS
+                </h2>
 
-      <div class="red-line"></div>
+            </div>
 
-      <p>
-        ROCHAYA carries the spirit of family,
-        perseverance and the beauty of Indonesian
-        heritage.
+            <p class="collection-description">
+                Pieces designed around heritage,
+                everyday movement and stories worth carrying.
+            </p>
 
-        <br><br>
+        </div>
 
-        Every piece is imagined as something that
-        can travel with you today — and remain
-        meaningful tomorrow.
-      </p>
+
+        <div class="collection-grid">
+
+            <article class="product-card large reveal">
+
+                <img
+                    src="images/heritage-01.jpg"
+                    alt="ROCHAYA Heritage Collection"
+                >
+
+                <div class="product-overlay">
+
+                    <div class="product-category">
+                        Heritage Collection
+                    </div>
+
+                    <div class="product-name">
+                        Heritage Classic
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product-card small reveal">
+
+                <img
+                    src="images/heritage-02.jpg"
+                    alt="ROCHAYA everyday bag"
+                >
+
+                <div class="product-overlay">
+
+                    <div class="product-category">
+                        Everyday Carry
+                    </div>
+
+                    <div class="product-name">
+                        Everyday Stories
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- COLLECTION -->
+<!-- =======================================================
+     DARK BRAND STORY
+======================================================= -->
 
-<section class="collections" id="collections">
+<section class="story-dark">
 
-  <div class="section-head">
+    <div class="container">
 
-    <div>
-      <div class="small-label">03 — Collections</div>
+        <div class="story-grid">
 
-      <h2>
-        OUR<br>
-        COLLECTIONS
-      </h2>
-    </div>
+            <div class="eyebrow reveal">
+                The Beginning
+            </div>
 
-    <div class="section-number">
-      ROCHAYA / 001
-    </div>
+            <div class="reveal">
 
-  </div>
+                <h2 class="story-title">
+                    A STORY<br>
+                    WORTH<br>
+                    <em>CARRYING.</em>
+                </h2>
 
+                <p class="story-copy">
+                    ROCHAYA dibangun dari sebuah penghormatan
+                    terhadap keluarga, perjalanan, dan nilai-nilai
+                    yang diwariskan dari satu generasi ke generasi
+                    berikutnya.
 
-  <div class="collection-grid">
+                    <br><br>
 
-    <div class="collection-card">
+                    Kami percaya bahwa benda yang kita gunakan
+                    setiap hari seharusnya memiliki makna.
+                    Bukan hanya indah dilihat,
+                    tetapi juga memiliki cerita untuk diceritakan.
+                </p>
 
-      <img
-        src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=85"
-        alt="Heritage collection"
-      >
+                <div class="story-signature">
+                    ROCHAYA
+                </div>
 
-      <div class="card-overlay">
-        <h3>Heritage Classics</h3>
-        <span>Timeless everyday pieces →</span>
-      </div>
+            </div>
 
-    </div>
-
-
-    <div class="collection-card small">
-
-      <img
-        src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1000&q=85"
-        alt="Everyday collection"
-      >
-
-      <div class="card-overlay">
-        <h3>Everyday Carry</h3>
-        <span>Made for daily stories →</span>
-      </div>
+        </div>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- CRAFT -->
+<!-- =======================================================
+     CRAFT
+======================================================= -->
 
-<section class="craft" id="craft">
+<section class="section" id="craft">
 
-  <div class="craft-grid">
+    <div class="container">
 
-    <div>
+        <div class="craft-grid">
 
-      <div class="small-label">
-        04 — Craft
-      </div>
+            <div class="craft-image reveal">
 
-      <h2>
-        MADE<br>
-        WITH<br>
-        INTENTION.
-      </h2>
+                <img
+                    src="images/craft-stitch.jpg"
+                    alt="ROCHAYA craftsmanship"
+                >
 
-      <p>
-        Dari material, bentuk, warna hingga detail
-        kecil — setiap elemen ROCHAYA dirancang
-        untuk terasa sederhana, kuat dan memiliki
-        karakter.
-      </p>
+            </div>
+
+
+            <div class="craft-content reveal">
+
+                <div class="eyebrow">
+                    03 / Craft
+                </div>
+
+                <h2 class="craft-title">
+                    MADE<br>
+                    WITH<br>
+                    INTENTION.
+                </h2>
+
+                <p class="craft-text">
+                    Dari bahan, tekstur, jahitan hingga detail kecil,
+                    setiap bagian memiliki alasan untuk berada di sana.
+
+                    <br><br>
+
+                    Kami ingin setiap ROCHAYA terasa personal,
+                    tahan digunakan, dan tetap memiliki karakter
+                    meskipun waktu terus berjalan.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
-
-    <img
-      class="craft-image"
-      src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=1200&q=85"
-      alt="Craftsmanship"
-    >
-
-  </div>
 
 </section>
 
 
-<!-- KIDS -->
+<!-- =======================================================
+     CRAFT MATERIAL
+======================================================= -->
 
-<section class="kids" id="kids">
+<section class="section">
 
-  <div class="kids-title">
+    <div class="container">
 
-    <div class="small-label">
-      05 — Little Stories
+        <div class="collection-grid">
+
+            <article class="product-card large reveal">
+
+                <img
+                    src="images/craft-material.jpg"
+                    alt="ROCHAYA material detail"
+                >
+
+                <div class="product-overlay">
+
+                    <div class="product-category">
+                        Material / Detail
+                    </div>
+
+                    <div class="product-name">
+                        Details Matter
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product-card small reveal">
+
+                <img
+                    src="images/heritage-03.jpg"
+                    alt="ROCHAYA heritage detail"
+                >
+
+                <div class="product-overlay">
+
+                    <div class="product-category">
+                        Heritage
+                    </div>
+
+                    <div class="product-name">
+                        Made To Last
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
     </div>
-
-    <h2>
-      LITTLE STORIES.<br>
-      BIG ADVENTURES.
-    </h2>
-
-  </div>
-
-
-  <div class="kids-grid">
-
-    <div class="kids-card">
-
-      <img
-        src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=900&q=85"
-        alt="River Days"
-      >
-
-      <h3>River Days</h3>
-      <p>For little explorers</p>
-
-    </div>
-
-
-    <div class="kids-card">
-
-      <img
-        src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=900&q=85"
-        alt="Sunny Trail"
-      >
-
-      <h3>Sunny Trail</h3>
-      <p>For bright little days</p>
-
-    </div>
-
-
-    <div class="kids-card">
-
-      <img
-        src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=85"
-        alt="Forest Friends"
-      >
-
-      <h3>Forest Friends</h3>
-      <p>For curious little hearts</p>
-
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- FINAL MESSAGE -->
+<!-- =======================================================
+     KIDS COLLECTION
+======================================================= -->
 
-<section class="quote">
+<section class="section kids" id="kids">
 
-  <p>
-    SOME THINGS ARE MADE
-    TO BE CARRIED.
-    SOME ARE MADE TO
-    BE REMEMBERED.
-  </p>
+    <div class="container">
 
-  <span>
-    ROCHAYA — CARRY YOUR STORY
-  </span>
+        <div class="kids-header reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    04 / Kids Collection
+                </div>
+
+                <h2 class="kids-title">
+                    LITTLE<br>
+                    <span>STORIES.</span>
+                </h2>
+
+            </div>
+
+            <p class="kids-description">
+                Heritage can also be playful.
+                A collection created for little journeys,
+                curious minds and everyday adventures.
+            </p>
+
+        </div>
+
+
+        <div class="kids-grid">
+
+            <article class="kids-card reveal">
+
+                <img
+                    src="images/kids-river.jpg"
+                    alt="River Days kids collection"
+                >
+
+                <div class="kids-info">
+
+                    <span>
+                        Kids Collection 01
+                    </span>
+
+                    <h3>
+                        River Days
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="kids-card reveal">
+
+                <img
+                    src="images/kids-sunny.jpg"
+                    alt="Sunny Trail kids collection"
+                >
+
+                <div class="kids-info">
+
+                    <span>
+                        Kids Collection 02
+                    </span>
+
+                    <h3>
+                        Sunny Trail
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="kids-card reveal">
+
+                <img
+                    src="images/kids-forest.jpg"
+                    alt="Forest Friends kids collection"
+                >
+
+                <div class="kids-info">
+
+                    <span>
+                        Kids Collection 03
+                    </span>
+
+                    <h3>
+                        Forest Friends
+                    </h3>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =======================================================
+     FAMILY STORY
+======================================================= -->
+
+<section class="family-story">
+
+    <div class="family-image">
+
+        <img
+            src="images/story.jpg"
+            alt="ROCHAYA family story"
+        >
+
+        <div class="family-content reveal">
+
+            <div class="eyebrow">
+                The Heart Of ROCHAYA
+            </div>
+
+            <h2 class="family-title">
+                ROCHAYA<br>
+                WAS BORN<br>
+                FROM FAMILY.
+            </h2>
+
+            <p class="family-text">
+                Di balik setiap produk ada cerita tentang keluarga,
+                tentang perjuangan, tentang seseorang yang terus
+                berusaha memberikan sesuatu yang lebih baik.
+
+                <br><br>
+
+                ROCHAYA membawa semangat itu ke dalam setiap
+                produk yang kami buat:
+                untuk digunakan hari ini,
+                disimpan besok,
+                dan mungkin suatu hari nanti
+                diwariskan menjadi kenangan.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     FINAL CTA
+======================================================= -->
+
+<section class="final-cta" id="contact">
+
+    <div class="container reveal">
+
+        <div class="eyebrow">
+            Your Story Starts Here
+        </div>
+
+        <h2 class="final-title">
+            CARRY<br>
+            <span>YOUR STORY.</span>
+        </h2>
+
+        <a href="https://wa.me/628XXXXXXXXXX" class="btn">
+            Shop / Contact →
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
 
 <footer>
 
-  <div class="footer-top">
+    <div class="container">
 
-    <div class="footer-logo">
-      ROCHAYA
+        <div class="footer-top">
+
+            <div>
+
+                <div class="footer-logo">
+                    ROCHAYA
+                </div>
+
+                <p class="footer-tagline">
+                    Heritage bags made to carry stories,
+                    memories and generations.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-column">
+
+                    <h4>
+                        Explore
+                    </h4>
+
+                    <a href="#story">
+                        Story
+                    </a>
+
+                    <a href="#collection">
+                        Collections
+                    </a>
+
+                    <a href="#craft">
+                        Craft
+                    </a>
+
+                    <a href="#kids">
+                        Kids
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Connect
+                    </h4>
+
+                    <a href="https://instagram.com/">
+                        Instagram
+                    </a>
+
+                    <a href="https://wa.me/628XXXXXXXXXX">
+                        WhatsApp
+                    </a>
+
+                    <a href="#contact">
+                        Shop
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div>
+                © 2026 ROCHAYA
+            </div>
+
+            <div>
+                CARRY THE STORY.
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="footer-text">
-      Heritage-inspired bags made with
-      intention, memory and story.
-
-      <br><br>
-
-      Indonesia · 2026
-    </div>
-
-  </div>
-
-
-  <div class="footer-bottom">
-
-    <div>
-      © 2026 ROCHAYA
-    </div>
-
-    <div>
-      HERITAGE · CRAFT · STORY
-    </div>
-
-  </div>
 
 </footer>
+
+
+<!-- =======================================================
+     WHATSAPP FLOAT
+======================================================= -->
+
+<a
+    href="https://wa.me/628XXXXXXXXXX"
+    class="whatsapp"
+    aria-label="WhatsApp"
+>
+    WA
+</a>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script>
+
+/* NAVBAR */
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 40){
+        navbar.classList.add("scrolled");
+    }else{
+        navbar.classList.remove("scrolled");
+    }
+
+});
+
+
+/* MOBILE MENU */
+
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
+
+menuButton.addEventListener("click", () => {
+
+    navLinks.classList.toggle("active");
+
+});
+
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+    });
+
+});
+
+
+/* SCROLL REVEAL */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.12
+    }
+
+);
+
+
+revealElements.forEach(element => {
+
+    observer.observe(element);
+
+});
+
+</script>
 
 </body>
 </html>
